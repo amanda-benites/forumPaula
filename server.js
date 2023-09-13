@@ -3,6 +3,9 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 
+// ----Adicionei a variável news
+const news = require('./data');
+
 const app = express();
 const port = 8000;
 const secretKey = 'yourSecretKey';
@@ -28,6 +31,11 @@ app.post('/login', (req, res) => {
     } else {
         return res.status(401).json({ error: 'Credenciais inválidas.' });
     }
+});
+
+// fiz um get para pegar os valores que vão ter no news
+app.get('/news', (req, res) => {
+    res.json(news)
 });
 
 app.listen(port, () => {
